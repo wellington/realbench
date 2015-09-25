@@ -1,3 +1,8 @@
+export TIMEFORMAT=%3lR
+
+test:
+	time ls >/dev/null
+
 install:
 	git submodule update --init
 	npm install
@@ -6,21 +11,26 @@ clean:
 	rm build/*
 
 wt:
-	wt compile --sass-dir=multi --build=build multi/*.scss
+	@echo "wellington"
+	@echo "======================"
+	time wt compile --sass-dir=multi --build=build short/*.scss >/dev/null
 
 wtmulti:
-	wt compile --multi --sass-dir=multi --build=build multi/*.scss
+	@echo "multi-threaded wellington"
+	@echo "======================"
+	time wt compile --multi --sass-dir=multi --build=build short/*.scss >/dev/null
 
 post:
-	time gulp post
+	@echo "postcss Grab a coffee, this can take several minutes"
+	@echo "======================"
+	time gulp post >/dev/null
 
 nodesass:
-	time gulp sass
+	@echo "node-sass"
+	@echo "======================"
+	time gulp sass >/dev/null
 
-single:
-	time gulp post
-	time gulp sass
-	time wt
+bench: wt wtmulti nodesass post
 
 create:
 	sh create.sh

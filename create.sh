@@ -1,7 +1,7 @@
 #!/bin/bash
 echo 'copies'
 mkdir -p multi
-for n in {001..100}; do
+for n in {001..10}; do
     echo "copy $n";
-    cp app.scss multi/app-$n.scss
+    cp single/app.scss short/app-$n.scss
 done

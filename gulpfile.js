@@ -7,7 +7,7 @@ gulp.task('post', function () {
     var partimport = require('postcss-partial-import')
     var plugins = [partimport({ extension: "scss"})];
 
-    gulp.src('multi/*.scss')
+    gulp.src('short/*.scss')
             .pipe( postcss(plugins, { parser: require('postcss-scss') }) )
             .pipe(rename(function(path){
                 path.extname = '.css';
@@ -17,7 +17,7 @@ gulp.task('post', function () {
 
 gulp.task('sass', function () {
     var sass = require('gulp-sass');
-    gulp.src('multi/*.scss')
+    gulp.src('short/*.scss')
         .pipe(sass.sync().on('error', sass.logError)
               .on('done', function(){ console.log(arguments); }))
         .pipe(gulp.dest('build/'))
