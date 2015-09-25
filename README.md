@@ -7,9 +7,9 @@ The benchmark passes 10 app.scss files to the processor for compilation. This fi
 Results early 2015 Macbook Pro
 =================================
 
-| processor | seconds |
-| ----------------------- | -------:|
-| wellington|0m0.957s|
-| multi-threaded wellington|0m0.354s|
-| node-sass|0m3.429s|
-| postCSS|1m43.778s|
+| processor | seconds | % |
+| ----------------------- | -------:| :----------: |
+| multi-threaded wellington|0m0.354s| 2.7x faster
+| wellington|0m0.957s| |
+| node-sass|0m3.429s                | 3.6x slower  |
+| postCSS|1m43.778s                 | 108x slower  |
