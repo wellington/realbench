@@ -11,5 +11,7 @@ Results early 2015 Macbook Pro
 | ----------------------- | -------:| :----------: |
 | multi-threaded wellington|0m0.354s| 2.7x faster
 | wellington|0m0.957s| |
+| sassc |0m1.024s                   |  |
 | node-sass|0m3.429s                | 3.6x slower  |
+| ruby sass |0m12.848s              | 13.4x slower |
 | postCSS|1m43.778s                 | 108x slower  |

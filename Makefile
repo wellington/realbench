@@ -1,36 +1,64 @@
 export TIMEFORMAT=%3lR
 
+FILES := short/*.scss
+WTBIN=$(shell which wt)
+SASSBIN=$(shell which sass)
+SASSCBIN=$(shell which sassc)
+
 test:
 	time ls >/dev/null
 
 install:
 	git submodule update --init
 	npm install
+	@which sass
+	@which wt
 
 clean:
-	rm build/*
+	-@rm build/*
 
-wt:
+echo:
+	@which sass
+	@which wt
+
+
+wt: clean
+	@echo "\n======================"
 	@echo "wellington"
 	@echo "======================"
-	time wt compile --sass-dir=multi --build=build short/*.scss >/dev/null
+	-time $(WTBIN) compile --sass-dir=multi --build=build $(FILES) >/dev/null
 
-wtmulti:
+wtmulti: clean
+	@echo "\n======================"
 	@echo "multi-threaded wellington"
 	@echo "======================"
-	time wt compile --multi --sass-dir=multi --build=build short/*.scss >/dev/null
+	-time $(WTBIN) compile --multi --sass-dir=multi --build=build $(FILES) >/dev/null
 
-post:
-	@echo "postcss Grab a coffee, this can take several minutes"
+post: clean
+	@echo "\n======================"
+	@echo "postcss -- Grab a coffee, this can take several minutes"
 	@echo "======================"
 	time gulp post >/dev/null
 
-nodesass:
+nodesass: clean
+	@echo "\n======================"
 	@echo "node-sass"
 	@echo "======================"
 	time gulp sass >/dev/null
 
-bench: wt wtmulti nodesass post
+ruby: clean
+	@echo "\n======================"
+	@echo "ruby sass"
+	@echo "======================"
+	-time $(SASSBIN) -C --sourcemap=none --update short:build >/dev/null
+
+sassc: clean
+	@echo "\n======================"
+	@echo "sassc"
+	@echo "======================"
+	-time sh sassc.sh >/dev/null
+
+bench: wt wtmulti sassc nodesass ruby post
 
 create:
 	sh create.sh
