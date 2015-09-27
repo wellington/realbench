@@ -16,6 +16,7 @@ install:
 
 clean:
 	-@rm build/*
+	-@rm -rf .sass-cache
 
 echo:
 	@which sass
@@ -58,7 +59,14 @@ sassc: clean
 	@echo "======================"
 	-time sh sassc.sh >/dev/null
 
-bench: wt wtmulti sassc nodesass ruby post
+compass: clean
+	@echo "\n======================"
+	@echo "compass"
+	@echo "======================"
+	-time compass compile --css-dir=build --sass-dir=short >/dev/null
+	$(MAKE) clean
+
+bench: wt wtmulti sassc nodesass ruby compass post
 
 create:
 	sh create.sh

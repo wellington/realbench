@@ -12,10 +12,11 @@ Results early 2015 Macbook Pro
 =================================
 
 | processor | seconds | % |
-| ----------------------- | -------:| :----------: |
-| multi-threaded wellington|0m0.354s| 2.7x faster
-| wellington|0m0.957s| |
-| sassc |0m1.024s                   |  |
-| node-sass|0m3.429s                | 3.6x slower  |
-| ruby sass |0m12.848s              | 13.4x slower |
-| postCSS|1m43.778s                 | 108x slower  |
+| ------------------------- | ----------:| :----------: |
+| wt (multi-threaded)       |   0m0.354s | 2.7x faster  |
+| wt (single-threaded       |   0m0.957s |              |
+| sassc                     |   0m1.024s |              |
+| node-sass                 |   0m3.429s | 3.6x slower  |
+| compass                   |  0m12.002s | 12.5x slower |
+| ruby sass                 |  0m12.848s | 13.4x slower |
+| postCSS                   |  1m43.778s | 108x slower  |
