@@ -31,3 +31,18 @@ gulp.task('sass', function () {
               .on('done', function(){ console.log(arguments); }))
         .pipe(gulp.dest('build/'))
 });
+
+gulp.task('eyeglass', function() {
+    var nodesass = require('node-sass');
+    var sass = require('gulp-sass');
+    var Constructor = require('eyeglass').Eyeglass;
+    var eyeglass = new Constructor({
+        root: ".",
+        buildDir: "build",
+
+    }, nodesass);
+    return gulp.src('short/*.scss')
+        .pipe(sass(eyeglass.sassOptions()).on('error', sass.logError)
+              .on('done', function(){ console.log(arguments); }))
+        .pipe(gulp.dest('build/'))
+})

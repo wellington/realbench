@@ -66,6 +66,9 @@ compass: clean
 	-time compass compile --css-dir=build --sass-dir=short >/dev/null
 	$(MAKE) clean
 
+eyeglass: clean
+	time gulp eyeglass
+
 bench: wt wtmulti sassc nodesass ruby compass post
 
 create:
